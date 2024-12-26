@@ -84,6 +84,4 @@ newBookBtn.addEventListener("click", () => {
     addBookForm.classList.toggle("hidden");
 })
 
-myLibrary.push(theHobbit);
-displayLibrary();
 
