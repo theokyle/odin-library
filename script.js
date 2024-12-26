@@ -20,7 +20,7 @@ function Book(title, author, pageCount, isRead) {
 }
 
 function addBookToLibrary() {
-    const newBook = new Book(titleInput.value, authorInput.value, pageCountInput.value, isReadInput.value);
+    const newBook = new Book(titleInput.value, authorInput.value, pageCountInput.value, isReadInput.checked);
     myLibrary.push(newBook);
     console.log(myLibrary)
 }
@@ -34,21 +34,31 @@ libraryTable.innerHTML = `<tr>
     <th>Author</th>
     <th>Page Count</th>
     <th>Read?</th>
+    <th></th>
     </tr>`;
-myLibrary.forEach((book) => {
+myLibrary.forEach((book, index) => {
     libraryTable.innerHTML += `<tr>
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.pageCount}</td>
-    <td>${book.isRead}</td>`
-})
+    <td id="book${index}-isRead"><span>No</span></td>
+    <button onclick="markAsRead(${index})">Mark as Read</button></tr>`;
+    console.log(book.isRead)
+    if(book.isRead) {
+        markAsRead(index);
+    }
+});
+}
+
+function markAsRead(index) {
+    document.getElementById(`book${index}-isRead`).classList.toggle("markRead");
 }
 
 function clearInputs() {
     titleInput.value = "";
     authorInput.value = "";
     pageCountInput.value = "";
-    isReadInput.value = "";
+    isReadInput.value = false;
 }
 
 addBookBtn.addEventListener("click", (event) => {
@@ -57,4 +67,7 @@ addBookBtn.addEventListener("click", (event) => {
     displayLibrary();
     clearInputs();
 })
+
+myLibrary.push(theHobbit);
+displayLibrary();
 

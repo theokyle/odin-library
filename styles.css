@@ -1,0 +1,7 @@
+.markRead span{
+    display: none;
+}
+
+.markRead::after {
+    content: "Yes";
+}
