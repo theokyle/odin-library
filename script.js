@@ -26,6 +26,7 @@ function addBookToLibrary() {
 }
 
 function displayLibrary() {
+libraryContainer.innerHTML = "";
 const libraryTable = document.createElement("table");
 libraryContainer.appendChild(libraryTable);
 libraryTable.innerHTML = `<tr>
@@ -43,11 +44,17 @@ myLibrary.forEach((book) => {
 })
 }
 
-myLibrary.push(theHobbit);
-displayLibrary();
+function clearInputs() {
+    titleInput.value = "";
+    authorInput.value = "";
+    pageCountInput.value = "";
+    isReadInput.value = "";
+}
 
 addBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
     addBookToLibrary();
+    displayLibrary();
+    clearInputs();
 })
 
