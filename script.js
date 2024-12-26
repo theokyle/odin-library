@@ -8,6 +8,8 @@ const pageCountInput = document.querySelector("#pageCount");
 const isReadInput = document.querySelector("#isRead");
 const addBookBtn = document.querySelector("#addBook");
 const libraryContainer = document.querySelector("#libraryContainer");
+const newBookBtn = document.querySelector("#newBookBtn");
+const addBookForm = document.querySelector("#addBookForm");
 
 function Book(title, author, pageCount, isRead) {
     this.title = title;
@@ -22,7 +24,6 @@ function Book(title, author, pageCount, isRead) {
 function addBookToLibrary() {
     const newBook = new Book(titleInput.value, authorInput.value, pageCountInput.value, isReadInput.checked);
     myLibrary.push(newBook);
-    console.log(myLibrary)
 }
 
 function displayLibrary() {
@@ -42,8 +43,7 @@ myLibrary.forEach((book, index) => {
     <td>${book.author}</td>
     <td>${book.pageCount}</td>
     <td id="book${index}-isRead"><span>No</span></td>
-    <button onclick="markAsRead(${index})">Mark as Read</button></tr>`;
-    console.log(book.isRead)
+    <td><button onclick="markAsRead(${index})">Mark as Read</button></td></tr>`;
     if(book.isRead) {
         markAsRead(index);
     }
@@ -59,6 +59,8 @@ function clearInputs() {
     authorInput.value = "";
     pageCountInput.value = "";
     isReadInput.value = false;
+    newBookBtn.classList.toggle("hidden");
+    addBookForm.classList.toggle("hidden");
 }
 
 addBookBtn.addEventListener("click", (event) => {
@@ -66,6 +68,11 @@ addBookBtn.addEventListener("click", (event) => {
     addBookToLibrary();
     displayLibrary();
     clearInputs();
+})
+
+newBookBtn.addEventListener("click", () => {
+    newBookBtn.classList.toggle("hidden");
+    addBookForm.classList.toggle("hidden");
 })
 
 myLibrary.push(theHobbit);

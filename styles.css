@@ -1,4 +1,50 @@
-.markRead span{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --light-background: #dfdfe2;
+}
+
+h1 {
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3b3b4f;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--light-background);
+    padding: 8px;
+    margin: 10px 0;
+}
+
+form input {
+    margin-bottom: 10px;
+}
+
+table {
+    background-color: var(--light-background);
+    padding: 5px;
+}
+
+td, th {
+    padding: 8px;
+    background-color: white;
+    border: 2px solid var(--light-background);
+    text-align: center;
+}
+
+.markRead span, .hidden{
     display: none;
 }
 
