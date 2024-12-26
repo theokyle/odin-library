@@ -35,7 +35,6 @@ libraryTable.innerHTML = `<tr>
     <th>Author</th>
     <th>Page Count</th>
     <th>Read?</th>
-    <th></th>
     </tr>`;
 myLibrary.forEach((book, index) => {
     libraryTable.innerHTML += `<tr>
@@ -43,7 +42,8 @@ myLibrary.forEach((book, index) => {
     <td>${book.author}</td>
     <td>${book.pageCount}</td>
     <td id="book${index}-isRead"><span>No</span></td>
-    <td><button onclick="markAsRead(${index})">Mark as Read</button></td></tr>`;
+    <td><button onclick="markAsRead(${index})">Mark as Read</button></td>
+    <td><button onclick="removeRow(${index})">Remove</button></tr>`;
     if(book.isRead) {
         markAsRead(index);
     }
@@ -52,6 +52,11 @@ myLibrary.forEach((book, index) => {
 
 function markAsRead(index) {
     document.getElementById(`book${index}-isRead`).classList.toggle("markRead");
+}
+
+function removeRow(index) {
+    myLibrary.splice(index, 1);
+    displayLibrary();
 }
 
 function clearInputs() {
@@ -65,6 +70,10 @@ function clearInputs() {
 
 addBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
+    if(titleInput.value === "" || authorInput.value === "") {
+        alert("Please enter a book and author");
+        return;
+    }
     addBookToLibrary();
     displayLibrary();
     clearInputs();

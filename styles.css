@@ -51,3 +51,7 @@ td, th {
 .markRead::after {
     content: "Yes";
 }
+
+#newBookBtn {
+    margin: 20px 0;
+}
